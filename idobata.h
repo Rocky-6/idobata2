@@ -27,25 +27,25 @@ struct idobata {
 typedef struct _imember *imember;
 
 /*  */
-void idobata_server(int port_number);
+void idobata_server(int port_number, char* username);
 
 /*  */
 void idobata_client(char* servername, int port_number, char* username);
 
 /*  */
-static char* create_packet(char* buffer, u_int32_t type, char* message);
+char* create_packet(char* buffer, u_int32_t type, char* message);
 
 /*  */
-static u_int32_t analyze_header(char* header);
+u_int32_t analyze_header(char* header);
 
 /*  */
-static void recv_packet();
+void recv_packet();
 
 /*  */
-static void send_packet(imember *user);
+void send_packet(imember *user);
 
 /*  */
-static imember create_member();
+imember create_member();
 
 
 int Accept(int s, struct sockaddr* addr, socklen_t* addrlen);
@@ -53,5 +53,7 @@ int Accept(int s, struct sockaddr* addr, socklen_t* addrlen);
 int Send(int s, void* buf, size_t len, int flags);
 
 int Recv(int s, void* buf, size_t len, int flags);
+
+char *chop_nl(char *s);
 
 #endif /* IDOOBATA_H_ */

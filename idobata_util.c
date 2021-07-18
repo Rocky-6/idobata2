@@ -79,3 +79,13 @@ int Recv(int s, void* buf, size_t len, int flags) {
     }
     return (r);
 }
+
+char *chop_nl(char *s)
+{
+  int len;
+  len = strlen(s);
+  if( s[len-1] == '\n' ){
+    s[len-1] = '\0';
+  }
+  return(s);
+}

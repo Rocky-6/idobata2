@@ -86,6 +86,7 @@ void idobata_client(char* servername, int port_number, char* username)
     }
     if (i == 3)
     {
+      idobata_server(port_number, username);
       printf("Server not found.\n");
       exit(EXIT_FAILURE);
     }

@@ -1,10 +1,10 @@
-#include "list.h"
+#include "idobata_list.h"
 
-imember make_cell(char *username, int number, imember member) {
+imember make_cell(char *username, int sock, imember member) {
   imember new_member = (imember)malloc(sizeof(struct _imember));
   if(new_member != NULL) {
     strcpy(new_member->username, username);
-    new_member->number = number;
+    new_member->sock = sock;
     new_member->next = member;
   }
   return new_member;
@@ -54,14 +54,14 @@ int nth(list *ls, int n, bool *err)
     return 0;
   }
   *err = true;
-  return member->number;
+  return member->sock;
 }
 
-bool insert_nth(list *ls, int n, char name[], int x)
+bool insert_nth(list *ls, int n, char *name, int sock)
 {
   imember member = nth_cell(ls->top, n - 1);
   if (member == NULL) return false;
-  member->next = make_cell(name, x, member->next);
+  member->next = make_cell(name, sock, member->next);
   return true;
 }
 
@@ -75,13 +75,13 @@ bool delete_nth(list *ls, int n) {
 }
 
 // 先頭に追加
-bool push(list *ls, char name[], int x)
+bool push(list *ls, char *name, int sock)
 {
-  return insert_nth(ls, 0, name, x);
+  return insert_nth(ls, 0, name, sock);
 }
 
 void print_list(list *ls)
 {
   for(imember member = ls->top->next; member != NULL; member = member->next)
-    printf("%s %d\n", member->username, member->number);
+    printf("%s %d\n", member->username, member->sock);
 }
