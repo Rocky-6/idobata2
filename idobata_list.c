@@ -83,5 +83,5 @@ bool push(list *ls, char *name, int sock)
 void print_list(list *ls)
 {
   for(imember member = ls->top->next; member != NULL; member = member->next)
-    printf("%s %d\n", member->username, member->sock);
+    fprintf(stderr, "%s %d\n", member->username, member->sock);
 }
