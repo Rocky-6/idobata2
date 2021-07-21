@@ -25,8 +25,7 @@ void delete_list(list *ls);
 imember nth_cell(imember member, int n);
 int nth(list *ls, int n, bool *err);
 bool insert_nth(list *ls, int n, char *name, int sock);
-bool delete_nth(list *ls, int n);
-bool push(list *ls, char *name, int sock);
+bool create_member(list *ls, char *name, int sock);
 void print_list(list *ls);
 
 #endif

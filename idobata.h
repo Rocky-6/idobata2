@@ -26,27 +26,14 @@ struct idobata {
 
 typedef struct _imember *imember;
 
-/*  */
+/* サーバ */
 void idobata_server(int port_number, char* username);
 
-/*  */
+/* クライアント */
 void idobata_client(char* servername, int port_number, char* username);
 
-/*  */
-char* create_packet(char* buffer, u_int32_t type, char* message);
-
-/*  */
+/* パケット解析 */
 u_int32_t analyze_header(char* header);
-
-/*  */
-void recv_packet();
-
-/*  */
-void send_packet(imember *user);
-
-/*  */
-imember create_member();
-
 
 int Accept(int s, struct sockaddr* addr, socklen_t* addrlen);
 

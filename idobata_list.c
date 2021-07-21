@@ -65,21 +65,13 @@ bool insert_nth(list *ls, int n, char *name, int sock)
   return true;
 }
 
-bool delete_nth(list *ls, int n) {
-  imember member = nth_cell(ls->top, n-1);
-  if(member == NULL || member->next == NULL) return false;
-  imember temp = member->next;
-  member->next = member->next->next;
-  free(temp);
-  return true;
-}
-
 // 先頭に追加
-bool push(list *ls, char *name, int sock)
+bool create_member(list *ls, char *name, int sock)
 {
   return insert_nth(ls, 0, name, sock);
 }
 
+// デバッグ用
 void print_list(list *ls)
 {
   for(imember member = ls->top->next; member != NULL; member = member->next)

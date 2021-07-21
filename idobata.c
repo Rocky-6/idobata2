@@ -13,7 +13,7 @@ idobata.c
 extern char *optarg;
 extern int optind, opterr, optopt;
 
-int main(int argc, char *const *argv)
+int main(int argc, char *argv[])
 {
     int port_number = DEFAULT_PORT;
     char servername[SERVER_LEN] = "localhost";
@@ -25,23 +25,30 @@ int main(int argc, char *const *argv)
     opterr = 0;
     while (1)
     {
-        c = getopt(argc, argv, "u:s:p");
+        c = getopt(argc, argv, "u:s:p:h");
         if(c == -1) break;
 
         switch (c)
         {
-        case 'u':
+        case 'u': // usernameの指定
             snprintf(username, USER_LEN, "%s", optarg);
             break;
 
-        case 's':
+        case 's': // サーバアドレスの指定
             snprintf(servername, SERVER_LEN, "%s", optarg);
-
-        case 'p':
-            port_number = atoi(optarg);
-
-        default:
             break;
+
+        case 'p': // ポート番号の指定
+            port_number = atoi(optarg);
+            break;
+
+        case '?':
+    	    fprintf(stderr,"Unknown option '%c'\n", optopt );
+
+    	  case 'h':
+    	    fprintf(stderr,"Usage: %s -u username -s server_name -p port_number\n", argv[0]);
+    	    exit(EXIT_FAILURE);
+    	    break;
         }
     }
 
